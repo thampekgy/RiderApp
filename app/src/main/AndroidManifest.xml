@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.windows10.riderapp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SignInSignUp">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".RegistrationRider"
+            android:label="Register Rider" />
+        <activity
+            android:name=".LoginRider"
+            android:label="Login" />
+        <activity
+            android:name=".EditProfile"
+            android:label="Manage Profile"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".Assign"
+            android:label="Assign"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".RequestDetail"
+            android:parentActivityName=".Assign"></activity>
+    </application>
+
+</manifest>

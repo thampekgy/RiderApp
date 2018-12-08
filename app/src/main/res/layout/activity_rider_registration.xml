@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistrationRider">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewPersonal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Personal Information"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/riderName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewGender"
+                android:layout_width="95dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColor="@android:color/black"
+                android:text="Gender :"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupGender"
+                android:layout_width="278dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="18sp">
+
+                <RadioButton
+                    android:id="@+id/radioButtonMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Male" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Female" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/riderContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contact Number"
+            android:ems="10"
+            android:maxLength="11"
+            android:inputType="phone"
+            android:textSize="18sp"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+
+        <EditText
+            android:id="@+id/riderEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:textSize="18sp"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <EditText
+            android:id="@+id/riderDateOfBirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date of Birth"
+            android:ems="10"
+            android:clickable="true"
+            android:editable="false"
+            android:focusable="false"
+            android:textSize="18sp"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewCity"
+                android:layout_width="95dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="City :"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spinnerCity"
+                android:layout_width="232dp"
+                android:layout_height="50dp"
+                android:entries="@array/city_array"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Set Your Password"
+            android:inputType="textPassword"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/editTextConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewEmergency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Emergency Information"
+            android:layout_marginTop="50sp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/riderGuardianName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Guardian's Name"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <EditText
+            android:id="@+id/riderGuardianWho"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="He/She is your?"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <EditText
+            android:id="@+id/riderGuardianContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Guardian's Contact"
+            android:ems="10"
+            android:inputType="phone"
+            android:textSize="18sp"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <Button
+            android:id="@+id/riderSubmitBtn"
+            android:layout_width="138dp"
+            android:layout_height="59dp"
+            android:layout_gravity="right|bottom"
+            android:text="Submit"
+            android:textSize="20sp" />
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+
+
+
+</FrameLayout>

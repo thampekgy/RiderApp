@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".EditProfile">
+
+
+
+
+    <!-- imageView  -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/nav_header_desc"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+        <!-- name -->
+        <LinearLayout
+                android:id="@+id/layout1"
+                android:layout_width="wrap_content"
+                android:layout_height="348dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+            <!--name-->
+                <LinearLayout
+                    android:id="@+id/layoutName"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView_name"
+                        android:layout_width="59dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Name :"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editText_name"
+                        android:layout_width="121dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="Names"
+                        android:inputType="textPersonName" />
+
+                </LinearLayout>
+
+            <!--gender-->
+            <LinearLayout
+                android:id="@+id/layoutGender"
+                android:layout_width="370dp"
+                android:layout_height="37dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView_gender"
+                    android:layout_width="141dp"
+                    android:layout_height="35dp"
+                    android:text="Gender"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/text_gender"
+                    android:layout_width="206dp"
+                    android:layout_height="35dp"
+                    android:hint="gender"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+                <!-- dob  -->
+            <LinearLayout
+                android:id="@+id/layoutDOB"
+                android:layout_width="370dp"
+                android:layout_height="46dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView_dob"
+                    android:layout_width="141dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignStart="@+id/layoutNum"
+                    android:text="Date of Birth :"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/editText_dob"
+                    android:layout_width="197dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignEnd="@+id/layoutNum"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="xx-xx-xxxxx"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <!-- contact number  -->
+            <LinearLayout
+                    android:id="@+id/layoutNum"
+                    android:layout_width="370dp"
+                    android:layout_height="46dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView_contactNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignStart="@+id/layoutNum"
+                        android:text="Contact Number :"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/editText_contactNumber"
+                        android:layout_width="197dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignEnd="@+id/layoutNum"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:ems="10"
+                        android:hint="xxx-xxxxxxx"
+                        android:inputType="textPhonetic"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+            <!--  email  -->
+                <LinearLayout
+                    android:id="@+id/layoutEmail"
+                    android:layout_width="370dp"
+                    android:layout_height="46dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView_email"
+                        android:layout_width="23dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Email :"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editText_email"
+                        android:layout_width="109dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="abc@gmail.com"
+                        android:inputType="textEmailAddress" />
+
+                </LinearLayout>
+
+            <!-- city -->
+            <LinearLayout
+                android:id="@+id/layoutCity"
+                android:layout_width="370dp"
+                android:layout_height="46dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:id="@+id/textView_city"
+                    android:layout_width="143dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignStart="@+id/layoutNum"
+                    android:text="City :"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/editText_city"
+                    android:layout_width="197dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignEnd="@+id/layoutNum"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="fggsg"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView_guardian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Emergency Contact"
+                android:textSize="25dp"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="10dp"/>
+
+
+            <!-- guardian name-->
+
+            <LinearLayout
+                android:id="@+id/layoutGname"
+                android:layout_width="370dp"
+                android:layout_height="46dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:id="@+id/textView_Gname"
+                    android:layout_width="143dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignStart="@+id/layoutNum"
+                    android:text="Guardian Name :"
+                    android:textSize="18sp"
+                    android:layout_marginTop="5dp"/>
+
+                <EditText
+                    android:id="@+id/editText_Gname"
+                    android:layout_width="197dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignEnd="@+id/layoutNum"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="Guardian's Name"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <!-- Who-->
+            <LinearLayout
+                android:id="@+id/layoutGwho"
+                android:layout_width="370dp"
+                android:layout_height="46dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:id="@+id/textView_Gwho"
+                    android:layout_width="143dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignStart="@+id/layoutNum"
+                    android:text="Guardian is :"
+                    android:textSize="18sp"
+                    android:layout_marginTop="5dp"/>
+
+                <EditText
+                    android:id="@+id/editText_Gwho"
+                    android:layout_width="197dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignEnd="@+id/layoutNum"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="Guardian is?"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <!--contact-->
+            <LinearLayout
+                android:id="@+id/layoutGcontact"
+                android:layout_width="370dp"
+                android:layout_height="46dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:id="@+id/textView_Gcontact"
+                    android:layout_width="143dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignStart="@+id/layoutNum"
+                    android:text="Guardian Contact :"
+                    android:textSize="18sp"
+                    android:layout_marginTop="5dp"/>
+
+                <EditText
+                    android:id="@+id/editText_Gcontact"
+                    android:layout_width="197dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignEnd="@+id/layoutNum"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="Phone"
+                    android:inputType="phone"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:onClick="btnSubmitUpdate_Click"
+                android:layout_marginTop="15dp"/>
+
+        </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
