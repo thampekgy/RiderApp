@@ -92,13 +92,14 @@ public class Assign extends AppCompatActivity {
                 lt = new ArrayList<String>();
                 if (dataSnapshot.exists()) {
 
-
-
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                        orderID = snapshot.getKey();
-                        Log.v("your order is " , ""+orderID);
-                        lt.add(orderID);
+                        if (snapshot.child("foodStatus").getValue().equals("pending")){
+
+                            orderID = snapshot.getKey();
+                            Log.v("your order is " , ""+orderID);
+                            lt.add(orderID);
+                        }
 
                     }
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(Assign.this, R.layout.task, R.id.txtview_orderID, lt);
