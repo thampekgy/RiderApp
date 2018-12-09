@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class RequestDetail extends AppCompatActivity {
 
-        String key, name1, phone1, add1, foodName1, qty1;
+        String key, name1, phone1, add1, foodName1, qty1, riderPhone;
         TextView orderID, name, phone, add, foodName, qty;
         Button btnDelivery;
 
@@ -41,6 +42,12 @@ public class RequestDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_detail);
 
+        //back button
+        if (getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         orderID = (TextView) findViewById(R.id.txtOrderID);
         name = (TextView) findViewById(R.id.txtview_name);
         phone = (TextView) findViewById(R.id.txtview_phone);
@@ -51,6 +58,7 @@ public class RequestDetail extends AppCompatActivity {
 
         Intent myIntent = getIntent();
         key = myIntent.getStringExtra("OrderID");
+        riderPhone = myIntent.getStringExtra("Phone");
         orderID.setText(key);
 
 
@@ -98,21 +106,31 @@ public class RequestDetail extends AppCompatActivity {
 
                     //btnDelivery.getText().equals("Pending");
                     btnDelivery.setText("Delivering");
+                    table_request.child("deliveryPerson").setValue(riderPhone);
                     table_request.child("foodStatus").setValue(btnDelivery.getText().toString());
                     flag = true;
 
                 }else
                 {
                     btnDelivery.setText("Delivered");
+                    table_request.child("deliveryPerson").setValue(riderPhone);
                     table_request.child("foodStatus").setValue(btnDelivery.getText().toString());
-                    Intent intent = new Intent(RequestDetail.this, Assign.class);
-                    startActivity(intent);
+                    Intent intent1 = new Intent(RequestDetail.this, Assign.class);
+                    startActivity(intent1);
 
                 }
             }
         });
 
 
+    }
+
+    //back button
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 
 

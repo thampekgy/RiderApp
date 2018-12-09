@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -43,7 +44,11 @@ public class Assign extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assign);
         getSupportActionBar().setTitle("Assign");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         name = (TextView) findViewById(R.id.textView_name);
         txtStatus = (TextView) findViewById(R.id.textView_onOff);
@@ -111,6 +116,7 @@ public class Assign extends AppCompatActivity {
 
                             Intent intent = new Intent(Assign.this, RequestDetail.class);
                             intent.putExtra("OrderID", listView.getItemAtPosition(position).toString());
+                            intent.putExtra("Phone", key);
                             startActivity(intent);
 
                         }
@@ -126,4 +132,12 @@ public class Assign extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
+    }
+
 }
