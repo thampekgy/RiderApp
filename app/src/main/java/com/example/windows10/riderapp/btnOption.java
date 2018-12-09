@@ -60,7 +60,6 @@ public class btnOption extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), EditProfile.class);
-                intent.putExtra("Phone", phone);
                 startActivity(intent);
             }
         });

@@ -112,6 +112,12 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.action_viewDeliveredHistory) {
+            Intent intent1 = new Intent(MainActivity.this, History.class);
+            intent1.putExtra("Phone", phone);
+            startActivity(intent1);
+            return true;
+        } else
         if (id == R.id.action_settings) {
             return true;
         }
@@ -152,35 +158,23 @@ public class MainActivity extends AppCompatActivity
         switch(id)
         {
             case R.id.nav_home:
-                /*Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);*/
+
 
                 break;
             case R.id.nav_editProfile:
-                /*Intent intent2 = new Intent(MainActivity.this, EditProfile.class);
-                intent2.putExtra("Phone1", phone);
-                intent2.putExtra("Email", email);
-                intent2.putExtra("Phone", phone);
-                intent2.putExtra("Name", name);
-                intent2.putExtra("Password", pwd);
-                startActivity(intent2);*/
+
 
                 break;
             case R.id.nav_order:
-                //fragment = new Restaurant();
+
                 break;
             case R.id.nav_help:
-                /*Intent intent4 = new Intent(MainActivity.this, Help1.class);
-                intent4.putExtra("Email", email);
-                intent4.putExtra("Phone", phone);
-                intent4.putExtra("Name", name);
-                startActivity(intent4);*/
+
 
                 break;
             case R.id.nav_about:
                 //fragment = new about();
-               /* Intent intent5 = new Intent(MainActivity.this, about.class);
-                startActivity(intent5);*/
+
 
                 break;
 

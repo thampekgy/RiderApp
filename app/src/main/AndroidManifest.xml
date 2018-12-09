@@ -28,13 +28,15 @@
             android:label="Login" />
         <activity
             android:name=".EditProfile"
-            android:label="Manage Profile"/>
+            android:label="Manage Profile" />
         <activity
             android:name=".Assign"
-            android:label="Assign"
-            />
-        <activity android:name=".RequestDetail"
-            android:label="Request Detail"></activity>
+            android:label="Assign" />
+        <activity
+            android:name=".RequestDetail"
+            android:label="Request Detail" />
+        <activity android:name=".History" />
+        <activity android:name=".History2"></activity>
     </application>
 
 </manifest>
