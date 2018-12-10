@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_viewDeliveredHistory) {
-            Intent intent1 = new Intent(MainActivity.this, History.class);
+            Intent intent1 = new Intent(MainActivity.this, btnOptionHistory.class);
             intent1.putExtra("Phone", phone);
             startActivity(intent1);
             return true;

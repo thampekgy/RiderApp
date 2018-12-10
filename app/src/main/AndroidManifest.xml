@@ -36,7 +36,10 @@
             android:name=".RequestDetail"
             android:label="Request Detail" />
         <activity android:name=".History" />
-        <activity android:name=".History2"></activity>
+        <activity android:name=".History2" />
+        <activity android:name=".btnOptionHistory" />
+        <activity android:name=".DailyHistory" />
+        <activity android:name=".DailyHistory2"></activity>
     </application>
 
 </manifest>

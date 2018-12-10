@@ -22,8 +22,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Calendar;
 
 public class RequestDetail extends AppCompatActivity {
 
@@ -113,10 +117,18 @@ public class RequestDetail extends AppCompatActivity {
                 }else
                 {
                     btnDelivery.setText("Delivered");
+
+                    SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat time = new SimpleDateFormat("h:mm a");
+                    String date1 = date.format(new Date());
+                    String time1 = time.format(new Date());
+                    table_request.child("date").setValue(date1);
+                    table_request.child("time").setValue(time1);
+
                     table_request.child("deliveryPerson").setValue(riderPhone);
                     table_request.child("foodStatus").setValue(btnDelivery.getText().toString());
-                    Intent intent1 = new Intent(RequestDetail.this, Assign.class);
-                    startActivity(intent1);
+                    /*Intent intent1 = new Intent(RequestDetail.this, Assign.class);
+                    startActivity(intent1);*/
 
                 }
             }

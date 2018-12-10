@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,13 +15,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class History2 extends AppCompatActivity {
+public class DailyHistory2 extends AppCompatActivity {
 
-    TextView name, phone, add, status, foodName, qty, date, time;
-    String name1, phone1, add1, status1, date1, time1, key, riderPhone, foodName1, qty1;
+    TextView name, phone, add, status, foodName, qty;
+    String name1, phone1, add1, status1, key, riderPhone, foodName1, qty1;
 
     ListView listView;
     List<String> lt1, lt2;
@@ -34,8 +31,7 @@ public class History2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history2);
-
+        setContentView(R.layout.activity_daily_history2);
         //back button
         if (getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,8 +42,6 @@ public class History2 extends AppCompatActivity {
         phone = findViewById(R.id.txtPhone);
         add = findViewById(R.id.txtAddress);
         status = findViewById(R.id.txtStatus);
-        date = findViewById(R.id.txtDate);
-        time = findViewById(R.id.txtTime);
         foodName = findViewById(R.id.txtFoodName);
         qty = findViewById(R.id.txtQty);
 
@@ -81,12 +75,6 @@ public class History2 extends AppCompatActivity {
 
                     add1 = dataSnapshot.child("address").getValue().toString();
                     add.setText(add1);
-
-                    date1 = dataSnapshot.child("date").getValue().toString();
-                    date.setText(date1);
-
-                    time1 = dataSnapshot.child("time").getValue().toString();
-                    time.setText(time1);
 
                     status1 = dataSnapshot.child("foodStatus").getValue().toString();
                     status.setText(status1);
@@ -123,7 +111,4 @@ public class History2 extends AppCompatActivity {
             finish();
         return super.onOptionsItemSelected(item);
     }
-
-
-
 }

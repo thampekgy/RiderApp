@@ -1,5 +1,6 @@
 package com.example.windows10.riderapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,14 +18,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class History extends AppCompatActivity {
+public class DailyHistory extends AppCompatActivity {
 
-    ListView viewHistory;
+    ListView dailyHistory;
     List<String> lt;
-    String key, orderID;
+    String key, orderID, dateNow, timeNow;
+    String fDate;
 
     FirebaseDatabase database;
     DatabaseReference table_request;
@@ -32,7 +36,7 @@ public class History extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
+        setContentView(R.layout.activity_daily_history);
 
         //back button
         if (getSupportActionBar()!=null){
@@ -40,17 +44,19 @@ public class History extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        viewHistory = findViewById(R.id.listView_viewHistory);
+        dailyHistory = findViewById(R.id.listView_viewDailyHistory);
 
-        receiveOrder();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat time = new SimpleDateFormat("h:mm a");
+        dateNow = date.format(new Date());
+        timeNow = time.format(new Date());
 
-
-
-
+        receiveId();
 
     }
 
-    public void receiveOrder() {
+
+    public void receiveId(){
 
         key = getIntent().getStringExtra("Phone");
 
@@ -60,39 +66,42 @@ public class History extends AppCompatActivity {
         table_request.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                lt = new ArrayList<String>();
+                lt = new ArrayList<>();
+
                 if (dataSnapshot.exists()) {
 
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         //Log.v("your order is " , ""+snapshot.child("deliveryPerson").getValue().toString());
 
-                        if (snapshot.child("foodStatus").getValue().equals("Delivered")){
+                        if (snapshot.child("foodStatus").getValue().equals("Delivered")) {
 
-                            if (snapshot.child("deliveryPerson").getValue().equals(key)){
+                            if (snapshot.child("deliveryPerson").getValue().equals(key)) {
 
-                                orderID = snapshot.getKey();
-                                Log.v("your order is " , ""+orderID);
-                                lt.add(orderID);
+                                if (snapshot.child("date").getValue().equals(dateNow)) {
+                                    orderID = snapshot.getKey();
+                                    Log.v("your order is ", "" + orderID);
+                                    lt.add(orderID);
+                                }
                             }
 
                         }
 
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(History.this, R.layout.history_layout, R.id.txtOrderId, lt);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(DailyHistory.this, R.layout.dailyhistory_layout, R.id.txtDailyOrderId, lt);
+                    //dailyHistory.setAdapter(adapter);
 
-
-                    viewHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    dailyHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                            Intent intent = new Intent(History.this, History2.class);
-                            intent.putExtra("OrderID", viewHistory.getItemAtPosition(position).toString());
+                            Intent intent = new Intent(DailyHistory.this, History2.class);
+                            intent.putExtra("OrderID", dailyHistory.getItemAtPosition(position).toString());
                             intent.putExtra("Phone", key);
                             startActivity(intent);
 
                         }
                     });
-                    viewHistory.setAdapter(adapter);
+                    dailyHistory.setAdapter(adapter);
                 }
 
             }
@@ -102,7 +111,10 @@ public class History extends AppCompatActivity {
 
             }
         });
+
+
     }
+
 
     //back Button
     @Override
