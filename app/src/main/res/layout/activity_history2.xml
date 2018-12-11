@@ -60,12 +60,17 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Foods                      Quantity"
+        android:text="Foods"
         android:textSize="30dp"
         android:layout_marginBottom="10dp"
         android:textColor="@android:color/black"/>
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/historyFoodsList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
@@ -85,7 +90,9 @@
             android:layout_weight="1"
             android:text="Qty"
             android:textSize="25dp" />
-    </LinearLayout>
+    </LinearLayout>-->
+
+
 
 
 </LinearLayout>

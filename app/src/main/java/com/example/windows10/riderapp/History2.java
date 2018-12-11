@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.windows10.riderapp.Model.Delivered;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +27,7 @@ public class History2 extends AppCompatActivity {
     String name1, phone1, add1, status1, date1, time1, key, riderPhone, foodName1, qty1;
 
     ListView listView;
-    List<String> lt1, lt2;
+    List<String> lt;
 
     FirebaseDatabase database;
     DatabaseReference table_request;
@@ -48,9 +49,6 @@ public class History2 extends AppCompatActivity {
         status = findViewById(R.id.txtStatus);
         date = findViewById(R.id.txtDate);
         time = findViewById(R.id.txtTime);
-        foodName = findViewById(R.id.txtFoodName);
-        qty = findViewById(R.id.txtQty);
-
 
 
         Intent myIntent = getIntent();
@@ -58,6 +56,7 @@ public class History2 extends AppCompatActivity {
         riderPhone = myIntent.getStringExtra("Phone");
 
         getRequest();
+        receiveOrder();
 
 
 
@@ -91,11 +90,8 @@ public class History2 extends AppCompatActivity {
                     status1 = dataSnapshot.child("foodStatus").getValue().toString();
                     status.setText(status1);
 
-                    foodName1 = dataSnapshot.child("foods").child("cart").child("0").child("productName").getValue(String.class);
-                    foodName.setText(foodName1);
-
-                    qty1 = dataSnapshot.child("foods").child("cart").child("0").child("quantity").getValue(String.class);
-                    qty.setText(qty1);
+                    /*foodName1 = dataSnapshot.child("foods").child("cart").child("0").child("productName").getValue(String.class);
+                    foodName.setText(foodName1);*/
                 }
 
 
@@ -115,8 +111,49 @@ public class History2 extends AppCompatActivity {
 
     }
 
+    public void receiveOrder() {
 
-    //back button
+        listView = (ListView) findViewById(R.id.historyFoodsList);
+
+        database = FirebaseDatabase.getInstance();
+        table_request = database.getReference("Requests").child(key);
+
+        table_request.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                lt = new ArrayList<String>();
+                if (dataSnapshot.exists()) {
+
+                        if (dataSnapshot.child("foodStatus").getValue().equals("Delivered")){
+
+                            if (dataSnapshot.child("deliveryPerson").getValue().equals(riderPhone)){
+
+                                int count = (int) dataSnapshot.child("foods").child("cart").getChildrenCount();
+
+
+                                    for (int i = 0; i < count ; i++){
+                                        String name =dataSnapshot.child("foods").child("cart").child(i+"").child("productName").getValue().toString();
+
+                                        lt.add(name);
+                                    }
+
+                            }
+
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(History2.this, R.layout.history2_layout, R.id.txtvFoodName, lt);
+                    listView.setAdapter(adapter);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+                    //back button
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)

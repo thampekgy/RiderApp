@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DailyHistory2 extends AppCompatActivity {
@@ -23,7 +25,7 @@ public class DailyHistory2 extends AppCompatActivity {
     String name1, phone1, add1, status1, key, riderPhone, foodName1, qty1;
 
     ListView listView;
-    List<String> lt1, lt2;
+    List<String> lt;
 
     FirebaseDatabase database;
     DatabaseReference table_request;
@@ -42,8 +44,6 @@ public class DailyHistory2 extends AppCompatActivity {
         phone = findViewById(R.id.txtPhone);
         add = findViewById(R.id.txtAddress);
         status = findViewById(R.id.txtStatus);
-        foodName = findViewById(R.id.txtFoodName);
-        qty = findViewById(R.id.txtQty);
 
 
 
@@ -52,6 +52,7 @@ public class DailyHistory2 extends AppCompatActivity {
         riderPhone = myIntent.getStringExtra("Phone");
 
         getRequest();
+        receiveOrder();
 
 
 
@@ -79,11 +80,9 @@ public class DailyHistory2 extends AppCompatActivity {
                     status1 = dataSnapshot.child("foodStatus").getValue().toString();
                     status.setText(status1);
 
-                    foodName1 = dataSnapshot.child("foods").child("cart").child("0").child("productName").getValue(String.class);
-                    foodName.setText(foodName1);
+                    /*foodName1 = dataSnapshot.child("foods").child("cart").child("0").child("productName").getValue(String.class);
+                    foodName.setText(foodName1);*/
 
-                    qty1 = dataSnapshot.child("foods").child("cart").child("0").child("quantity").getValue(String.class);
-                    qty.setText(qty1);
                 }
 
 
@@ -101,6 +100,48 @@ public class DailyHistory2 extends AppCompatActivity {
 
 
 
+    }
+
+    public void receiveOrder() {
+
+        listView = (ListView) findViewById(R.id.historyFoodsList);
+
+        database = FirebaseDatabase.getInstance();
+        table_request = database.getReference("Requests").child(key);
+
+        table_request.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                lt = new ArrayList<String>();
+                if (dataSnapshot.exists()) {
+
+                    if (dataSnapshot.child("foodStatus").getValue().equals("Delivered")){
+
+                        if (dataSnapshot.child("deliveryPerson").getValue().equals(riderPhone)){
+
+                            int count = (int) dataSnapshot.child("foods").child("cart").getChildrenCount();
+
+
+                            for (int i = 0; i < count ; i++){
+                                String name =dataSnapshot.child("foods").child("cart").child(i+"").child("productName").getValue().toString();
+
+                                lt.add(name);
+                            }
+
+                        }
+
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(DailyHistory2.this, R.layout.history2_layout, R.id.txtvFoodName, lt);
+                    listView.setAdapter(adapter);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
