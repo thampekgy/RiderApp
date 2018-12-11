@@ -8,7 +8,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +43,9 @@ public class RequestDetail extends AppCompatActivity {
 
     Boolean flag = false;
 
+    ListView listView;
+    List<String> lt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +61,7 @@ public class RequestDetail extends AppCompatActivity {
         name = (TextView) findViewById(R.id.txtview_name);
         phone = (TextView) findViewById(R.id.txtview_phone);
         add = (TextView) findViewById(R.id.txtview_address);
-        foodName = (TextView) findViewById(R.id.textView16);
-        qty = (TextView) findViewById(R.id.textView17);
+        listView = findViewById(R.id.listView_requestDetail);
         btnDelivery = (Button) findViewById(R.id.btnDeliver);
 
         Intent myIntent = getIntent();
@@ -72,6 +76,7 @@ public class RequestDetail extends AppCompatActivity {
         table_request.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                lt = new ArrayList<String>();
                 if (dataSnapshot.exists()) {
                     name1 = dataSnapshot.child("name").getValue().toString();
                     name.setText(name1);
@@ -82,12 +87,19 @@ public class RequestDetail extends AppCompatActivity {
                     add1 = dataSnapshot.child("address").getValue().toString();
                     add.setText(add1);
 
-                    foodName1 = dataSnapshot.child("foods").child("cart").child("0").child("productName").getValue(String.class);
-                    foodName.setText(foodName1);
+                    /*foodName1 = dataSnapshot.child("foods").child("cart").child("0").child("productName").getValue(String.class);
+                    foodName.setText(foodName1);*/
 
-                    qty1 = dataSnapshot.child("foods").child("cart").child("0").child("quantity").getValue(String.class);
-                    qty.setText(qty1);
+                    int count = (int) dataSnapshot.child("foods").child("cart").getChildrenCount();
 
+
+                    for (int i = 0; i < count ; i++){
+                        String name =dataSnapshot.child("foods").child("cart").child(i+"").child("productName").getValue().toString();
+
+                        lt.add(name);
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(RequestDetail.this, R.layout.request_detail_layout, R.id.textView7, lt);
+                    listView.setAdapter(adapter);
 
                 }
             }
